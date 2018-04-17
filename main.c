@@ -67,8 +67,12 @@ void			do_test_str(int (*fct)(char*), const char *name, char* str)
 		printf("%s ERROR\n", name);
 }
 
+#include <ctype.h>
+
 int				main(void)
 {
+	int			i;
+
 	do_test(&bzero_valid, "bzero");
 
 	printf("\n");
@@ -77,21 +81,31 @@ int				main(void)
 
 	printf("\n");
 
-	do_test_int(&ft_isalpha, "ft_isalpha(A)", 'A');
-	do_test_int(&ft_isalpha, "ft_isalpha(a)", 'a');
-	do_test_int(&ft_isalpha, "ft_isalpha(b)", 'b');
-	do_test_int(&ft_isalpha, "ft_isalpha(_)", '_');
-	do_test_int(&ft_isalpha, "ft_isalpha(2)", '2');
+	i = 0;
+	while (i < 300)
+	{
+		if ((!!isalpha(i)) != ft_isalpha(i))
+		{
+			printf("Error : ft_isalpha : %d - %c (%d %d)\n", i, i, isalpha(i), ft_isalpha(i));
+			return (0);
+		}
+		i++;
+	}
 
-	printf("\n");
+	printf("ft_isalpha : OK\n");
 
-	do_test_int(&ft_isdigit, "ft_isdigit(y)", 'y');
-	do_test_int(&ft_isdigit, "ft_isdigit(/)", '/');
-	do_test_int(&ft_isdigit, "ft_isdigit(9)", '9');
-	do_test_int(&ft_isdigit, "ft_isdigit(0)", '0');
-	do_test_int(&ft_isdigit, "ft_isdigit(2)", '2');
+	i = 0;
+	while (i < 300)
+	{
+		if ((!!isdigit(i)) != ft_isdigit(i))
+		{
+			printf("Error : ft_isdigit : %d - %c (%d %d)\n", i, i, isdigit(i), ft_isdigit(i));
+			return (0);
+		}
+		i++;
+	}
 
-	printf("\n");
+	printf("ft_isdigit : OK\n");
 
 	do_test_int(&ft_isalnum, "ft_isalnum(A)", 'A');
 	do_test_int(&ft_isalnum, "ft_isalnum(a)", 'a');

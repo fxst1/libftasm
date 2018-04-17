@@ -36,7 +36,6 @@ ft_cat__rw:
 	mov			rax, 1;0x2000004
 	syscall
 
-
 	jmp			ft_cat__rw
 
 ft_cat__end:

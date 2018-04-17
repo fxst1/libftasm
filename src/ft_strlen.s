@@ -11,15 +11,17 @@ ft_strlen:
 
 	enter		0, 0
 	push		rdi
-	mov			rax, 0
-	mov			rcx, -1
-	cmp			rdi, 0
-	je			ft_strlen__end
+	mov			rcx, 0
+	not			rcx
+	mov			al, 0
+	cld
 
+	repne		scasb
 
-	repne scasb
-	mov			rax, -2
-	sub			rax, rcx
+	; rcx == -1 - rcx
+	not			rcx
+	dec			rcx
+	mov			rax, rcx
 
 ft_strlen__end:
 

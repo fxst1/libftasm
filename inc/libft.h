@@ -9,7 +9,13 @@ int			ft_isdigit(const int value);
 int			ft_isalnum(const int value);
 int			ft_isascii(const int value);
 int			ft_isprint(const int value);
+int			ft_toupper(const int value);
+int			ft_tolower(const int value);
+int			ft_puts(const char *s);
 size_t		ft_strlen(const char *s);
+void		*ft_memset(void *dest, int value, size_t size);
+void		*ft_memcpy(void *dest, const void *src, size_t size);
+char		*ft_strdup(const char *s);
 void		ft_cat(const int fd);
 
 #endif
