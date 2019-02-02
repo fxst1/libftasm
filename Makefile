@@ -6,7 +6,7 @@
 #    By: fxst1 <fxst1@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/12 10:57:23 by fxst1             #+#    #+#              #
-#    Updated: 2019/02/02 18:52:11 by fjacquem         ###   ########.fr        #
+#    Updated: 2019/02/02 18:57:21 by fjacquem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 CC = nasm
@@ -35,7 +35,7 @@ $(NAME) : $(OBJ)
 
 $(OBJDIR)%.o: %.s
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) $(PREFIX) -o $@ $<
 
 install:
 	brew install nasm
