@@ -6,7 +6,7 @@
 #    By: fxst1 <fxst1@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/12 10:57:23 by fxst1             #+#    #+#              #
-#    Updated: 2018/04/13 20:19:55 by fxst1            ###   ########.fr        #
+#    Updated: 2019/02/02 18:52:11 by fjacquem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 CC = nasm
@@ -25,6 +25,7 @@ ifeq ($(UNAME), Linux)
 else
 	CFLAGS = -f macho64
 	PREFIX = --prefix _ -dOSX=1
+	CC = ~/.brew/Cellar/nasm/2.14.02/bin/nasm
 endif
 
 all: $(NAME)
@@ -35,6 +36,9 @@ $(NAME) : $(OBJ)
 $(OBJDIR)%.o: %.s
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -o $@ $<
+
+install:
+	brew install nasm
 
 test:
 	cc -Wall -Wextra -Werror main.c -o tests -L. -lfts
