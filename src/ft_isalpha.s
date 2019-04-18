@@ -13,7 +13,7 @@ global	ft_isalpha
 
 ft_isalpha:
 
-	enter	0, 0
+	enter		0, 0
 	mov		rax, 0
 	cmp		rdi, 64
 	jle		ft_isalpha__end

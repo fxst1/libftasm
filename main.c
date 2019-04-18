@@ -4,7 +4,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
+#include <ctype.h>
+/*
 static int		bzero_valid(void)
 {
 	char	buffer[256];
@@ -42,7 +43,7 @@ static int		strcat_valid(void)
 	ft_strcat(buffer, "World");
 	return (strcmp(buffer, "Hello World") == 0);
 }
-
+*/
 void			do_test(int (*fct)(void), const char *name)
 {
 	if ((*fct)())
@@ -67,10 +68,24 @@ void			do_test_str(int (*fct)(char*), const char *name, char* str)
 		printf("%s ERROR\n", name);
 }
 
-#include <ctype.h>
+void			do_test_toupper()
+{
+	int			i;
+
+	i = 0;
+	while (i < 256)
+	{
+		if (ft_toupper(i) == toupper(i))
+			printf("ft_toupper (%d %c) OK\n", i, i);
+		else
+			printf("ft_toupper (%d %c) FAIL, (ft: %d - sys: %d)\n", i,i, ft_toupper(i), toupper(i));
+		i++;
+	}
+}
 
 int				main(void)
 {
+	/*
 	int			i;
 
 	do_test(&bzero_valid, "bzero");
@@ -123,6 +138,10 @@ int				main(void)
 
 	printf("\n");
 
+	do_test_toupper();
+
+	printf("\n");
+
 	do_test_int(&ft_isprint, "ft_isprint(0)", 0);
 	do_test_int(&ft_isprint, "ft_isprint( )", ' ');
 	do_test_int(&ft_isprint, "ft_isprint(b)", 'b');
@@ -131,7 +150,12 @@ int				main(void)
 
 	printf("\n");
 
-	do_test_str(&strlen_valid, "ft_strlen(hello world)", "hello world");
+	do_test_str(&strlen_valid, "ft_strlen(hello sam)", "hello sam");
+*/
+	char	*tmp = "HELLO MAN, HOW ARE YOU ? It mAkes a Long tiME!!!!!!!";
 
+	//printf("FT_PUTS %zu\n", strlen(tmp));
+	printf("%s", ft_strdup(tmp));
+	puts(tmp);
 	return (0);
 }

@@ -25,7 +25,8 @@ ifeq ($(UNAME), Linux)
 else
 	CFLAGS = -f macho64
 	PREFIX = --prefix _ -dOSX=1
-	CC = ~/.brew/Cellar/nasm/2.14.02/bin/nasm
+	#CC = ~/.brew/Cellar/nasm/2.14.02/bin/nasm
+ 	CC = nasm
 endif
 
 all: $(NAME)
@@ -50,7 +51,7 @@ clean:
 
 fclean:
 	@rm -rf $(OBJDIR)
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) ./tests ./cat
 	@rm -rf tests
 
 re: fclean all
