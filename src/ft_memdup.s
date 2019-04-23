@@ -4,6 +4,7 @@
 ;	RDI : const void*	src
 ;	RSI : size_t		size
 ;
+
 %include "./inc/libftasm.s"
 section .text
 
@@ -50,5 +51,6 @@ ft_memdup:
 
 	mov		rax, 0
 
-	leave
+	mov		rsp, rbp
+	pop		rbp
 	ret

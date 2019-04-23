@@ -32,6 +32,13 @@
 %define	STDOUT_FILENO		1
 %define	STDERR_FILENO		2
 
+%define	SIZEOF_LIST			0x28
+%define	OFFSET_LIST_CONTENT		0x0
+%define	OFFSET_LIST_CONTENTS	0x8
+%define	OFFSET_LIST_NEXT		0x10
+%define	OFFSET_LIST_LAST		0x18
+%define	OFFSET_LIST_FIRST		0x20
+
 %macro	PREPARE_STACK_FRAME 0
 	push    rbp
 	mov     rbp, rsp

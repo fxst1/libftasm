@@ -9,8 +9,14 @@ global	ft_strlen
 
 ft_strlen:
 
-	enter		0, 0
+	push    rbp
+	mov     rbp, rsp
 	push		rdi
+
+	mov			rax, 0
+	test		rdi, rdi
+	jz			.ft_strlen__end
+
 	mov			rcx, 0
 	not			rcx
 	mov			al, 0
@@ -23,8 +29,9 @@ ft_strlen:
 	dec			rcx
 	mov			rax, rcx
 
-ft_strlen__end:
+.ft_strlen__end:
 
-	pop			rdi
-	leave
+	pop		rdi
+	mov		rsp, rbp
+	pop		rbp
 	ret

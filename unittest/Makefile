@@ -9,50 +9,35 @@
 #    Updated: 2019/02/02 18:57:21 by fjacquem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-CC = nasm
-NAME = libfts.a
-
+CC = g++
+CPPFLAGS = -std=c++11 -Wall -Wextra -Werror -I ./inc/
+NAME = libunittest.a
+EXEC = ../unittest_exec
 INCDIR = -I ./inc/
 OBJDIR = ./obj/
 
-SRC = $(filter %.s, $(shell find src -type f))
-OBJ = $(addprefix $(OBJDIR), $(SRC:.s=.o))
+SRC = $(filter %.cc, $(shell find src -type f))
+OBJ = $(addprefix $(OBJDIR), $(SRC:.cc=.o))
 
-UNAME = $(shell uname -s)
-ifeq ($(UNAME), Linux)
-	CFLAGS = -f elf64
-	PREFIX = -dLINUX=1
-else
-	CFLAGS = -f macho64
-	PREFIX = --prefix _ -dOSX=1
-	#CC = ~/.brew/Cellar/nasm/2.14.02/bin/nasm
- 	CC = nasm
-endif
-
-all: $(NAME)
+all: $(EXEC)
 
 $(NAME) : $(OBJ)
 	ar rc $(NAME) $(OBJ)
 
-$(OBJDIR)%.o: %.s
+$(OBJDIR)%.o: %.cc
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(PREFIX) -o $@ $<
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
-install:
-	brew install nasm
-
-test: $(NAME)
-	make -C ./unittest
+$(EXEC): $(NAME)
+	g++ $(CPPFLAGS) -I ../inc -I ./inc ./main.cc -o $(EXEC) -L. -lunittest -L../ -lfts
 
 clean:
-	make -C ./unittest clean
 	@rm -rf $(OBJDIR)
-	@rm -rf tests
+	@rm -rf $(EXEC)
 
 fclean:
-	make -C ./unittest fclean
 	@rm -rf $(OBJDIR)
-	@rm -rf $(NAME) ./tests ./cat
-	@rm -rf ./unittest_exec
+	@rm -rf $(NAME) ./$(EXEC)
+	@rm -rf tests
 
 re: fclean all

@@ -1,6 +1,8 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <strings.h>
+# include "list.h"
+# include "printer.h"
 
 void		ft_bzero(void *buffer, size_t length);
 char		*ft_strcat(char *dest, const char *src);
